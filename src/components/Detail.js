@@ -5,8 +5,7 @@ import axios from 'axios';
 export default function Detail(props) {
 
   const [person, setPerson] = useState([]);
-// Verificar como pegar um email expecífico no randomuser
-// Não consegui resolver isso
+// Seems that is impossible get an specifc user
   function getPerson(){
     axios
     .get("https://randomuser.me/api")
