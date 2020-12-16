@@ -1,15 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import { StyleSheet, Text, View, Image, FlatList} from 'react-native';
+// import api from '../services/api';
 import axios from 'axios';
-
 export default function Detail(props) {
 
   const [person, setPerson] = useState([]);
 // Seems that is impossible get an specifc user
   function getPerson(){
     axios
-    .get("https://randomuser.me/api")
-    .then(response => setPerson(response.data.results));
+    .get("http://10.0.2.2:3000/people/2")
+    .then(response => setPerson(response.data));
   }; 
 
   useEffect(() => {
@@ -29,22 +29,22 @@ export default function Detail(props) {
           renderItem={({ item }) => 
           <View>
             <Image style={st.image} 
-              source={{uri: item.picture.large}}
+              source={{uri: item.avatar}}
             />
             <Text style={st.text}>
-              {item.name.first} - {item.name.last}
+              {item.name}
             </Text>
             <Text style={st.email}>
               {item.email}
             </Text>
             <Text style={st.info}>
-              Location: {item.location.street.number} - {item.location.street.name}
+              Location: {item.number}, {item.street}
             </Text>
             <Text style={st.info}>
-              City: {item.location.city} State: {item.location.state}
+              City: {item.city} State: {item.state}
             </Text>
             <Text style={st.info, {fontSize:20, alignSelf: 'center'}}>
-              Country: {item.location.country}
+              Country: {item.country}
             </Text>
           </View>
           

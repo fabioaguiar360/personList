@@ -2,8 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import React, {useEffect, useState} from 'react';
 import { StyleSheet, Text, View, ScrollView, FlatList, TouchableOpacity, Image} from 'react-native';
 import Person from './Person';
-// import axios from 'axios'; 
-import api from '../services/api';
+import axios from 'axios'; 
+// import api from '../services/api';
 
 export default function NamesList( { navigation } ) {
   
@@ -11,11 +11,11 @@ const [names, setNames] = useState([]);
 
 function laodNames(){
   axios
-  // verificar se está lendo da api loaclhost:3000/people
-    .get("people")
-    .then(res => {setNames(res.data.results);
-    
-  });
+    .get("http://10.0.2.2:3000/people")
+    .then((res) => {
+        setNames(res.data)
+        // console.log(res.data)
+    });
 
 };
 
@@ -25,6 +25,7 @@ useEffect(() => {
 
 
   return (
+    
     <View style={st.container}>
       <StatusBar style="auto" />
       <View showsVerticalScrollIndicator={false} style={st.scroller}>
@@ -37,8 +38,8 @@ useEffect(() => {
           renderItem={({ item }) => 
           <Person
            email={item.email}
-            imageUrl={item.picture.thumbnail}
-             name={item.name.first+' '+item.name.last}
+            imageUrl={item.avatar}
+             name={item.name}
              onClick={() => navigation.navigate('Detail')}
              />
             }
