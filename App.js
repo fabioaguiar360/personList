@@ -5,12 +5,13 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { StyleSheet, Text, View, ScrollView, FlatList } from 'react-native';
 import NamesList from './src/components/NamesList';
 import Detail from './src/components/Detail';
+import PersonForm from './src/components/PersonForm';
 
 export default function App() {
  const Stack = createStackNavigator();
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName={'Contact List'}>
         <Stack.Screen 
           name="Contact List" 
           component={NamesList} 
@@ -18,6 +19,10 @@ export default function App() {
         <Stack.Screen
          name="Detail" 
          component={Detail} 
+        />
+        <Stack.Screen 
+          name="Person Data" 
+          component={PersonForm} 
         />
       </Stack.Navigator>
     </NavigationContainer>

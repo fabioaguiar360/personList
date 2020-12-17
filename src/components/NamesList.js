@@ -33,13 +33,13 @@ useEffect(() => {
           keyExtractor={ (item) => item.email}
           // Rendering item per item and calling the component '<Person />'
           renderItem={({ item }) => 
-          <Person
-            email={item.email}
-            imageUrl={item.avatar}
-            name={item.name}
-            // paasing the complete object like from params
-            onClick={() => navigation.navigate('Detail', item)}
-          />
+              <Person
+                email={item.email}
+                imageUrl={item.avatar}
+                name={item.name}
+                // paasing the complete object like from params
+                onClick={() => navigation.navigate('Detail', item)}
+              />
             }
            
         />
