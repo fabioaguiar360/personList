@@ -11,12 +11,10 @@ const [names, setNames] = useState([]);
 
 function laodNames(){
   api
-    .get("http://10.0.2.2:3000/people")
+    .get("people")
     .then((res) => {
-        setNames(res.data)
-        // console.log(res.data)
+        setNames(res.data);
     });
-
 };
 
 useEffect(() => {
@@ -38,10 +36,10 @@ useEffect(() => {
           renderItem={({ item }) => 
           <Person
            email={item.email}
-            imageUrl={item.avatar}
-             name={item.name}
-             onClick={() => navigation.navigate('Detail')}
-             />
+           imageUrl={item.avatar}
+           name={item.name}
+           onClick={() => navigation.navigate('Detail', item)}
+          />
             }
            
         />

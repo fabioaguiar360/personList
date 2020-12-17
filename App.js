@@ -1,8 +1,7 @@
 import 'react-native-gesture-handler';
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, ScrollView, FlatList } from 'react-native';
 import NamesList from './src/components/NamesList';
 import Detail from './src/components/Detail';

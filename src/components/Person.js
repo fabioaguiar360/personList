@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 
  function Person(props) {
-  // console.warn(Object.keys(props));
   return (
 
       <TouchableOpacity style={st.box} onPress={props.onClick}>
@@ -23,7 +22,6 @@ const st = StyleSheet.create({
     box: {
       borderRadius: 5,
       flexDirection: 'row',
-      // justifyContent: 'center',
       alignItems: 'center',
       alignSelf: 'center',
       backgroundColor: '#c2c2c2',

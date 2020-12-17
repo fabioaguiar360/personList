@@ -1,14 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, Text, View, Image, FlatList} from 'react-native';
-// import api from '../services/api';
-import axios from 'axios';
+import { StyleSheet, Text, View, Image} from 'react-native';
+
 export default function Detail(props) {
 
   const [person, setPerson] = useState([]);
   function getPerson(){
-    axios
-    .get("http://10.0.2.2:3000/people/2")
-    .then(response => setPerson(response.data));
+    setPerson(props.route.params);
   }; 
 
   useEffect(() => {
@@ -16,41 +13,26 @@ export default function Detail(props) {
   },[]);
 
   return (
-     
-      <View >
-        <FlatList
-          // past the array of objetcts
-          data={person}
-          // Extracting the item by 'id'
-          keyExtractor={ (item) => item.email}
-          // Rendering item per item and calling the component '<Person />'
-          renderItem={({ item }) => 
-          <View>
-            <Image style={st.image} 
-              source={{uri: item.avatar}}
-            />
-            <Text style={st.text}>
-              {item.name}
-            </Text>
-            <Text style={st.email}>
-              {item.email}
-            </Text>
-            <Text style={st.info}>
-              Location: {item.number}, {item.street}
-            </Text>
-            <Text style={st.info}>
-              City: {item.city} State: {item.state}
-            </Text>
-            <Text style={st.info, {fontSize:20, alignSelf: 'center'}}>
-              Country: {item.country}
-            </Text>
-          </View>
-          
-  }
-           
-        />
-      </View>
-  
+        <View style={st.box}>
+          <Image style={st.image} 
+            source={{uri: person.avatar}}
+          />
+          <Text style={st.text}>
+            {person.name}
+          </Text>
+          <Text style={st.email}>
+            {person.email}
+          </Text>
+          <Text style={st.info}>
+            Location: {person.number}, {person.street}
+          </Text>
+          <Text style={st.info}>
+            City: {person.city} State: {person.state}
+          </Text>
+          <Text style={st.info, {fontSize:20, alignSelf: 'center'}}>
+            Country: {person.country}
+          </Text>
+        </View>
   );
 }
 
@@ -59,10 +41,7 @@ const st = StyleSheet.create({
     flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#000',
-      width: '100%',
-      height: 75,
-      padding: 5
+
     },
     text: {
       fontSize: 30, 
@@ -87,11 +66,10 @@ const st = StyleSheet.create({
         height: 350,
         justifyContent: 'center',
         alignSelf: 'center',
-        borderRadius: 50,
+        borderRadius: 20,
         marginTop: 30,
         marginBottom: 30,
         borderColor: '#000',
-        borderWidth: 1,
-        borderStyle: 'solid' 
+        borderWidth: 1
     }
   });
