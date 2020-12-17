@@ -2,7 +2,6 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { StyleSheet, Text, View, ScrollView, FlatList } from 'react-native';
 import NamesList from './src/components/NamesList';
 import Detail from './src/components/Detail';
 import PersonForm from './src/components/PersonForm';
@@ -29,13 +28,13 @@ export default function App() {
   );
 }
 
-const st = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center'
-  },
-  scroller:  {
-    width: '100%'
-  }
-});
+// const st = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: '#fff',
+//     alignItems: 'center'
+//   },
+//   scroller:  {
+//     width: '100%'
+//   }
+// });
