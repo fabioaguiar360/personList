@@ -5,6 +5,7 @@ export default function Detail(props) {
 
   const [person, setPerson] = useState([]);
   function getPerson(){
+    //I'm geting the object from onClick (NameList) like a params
     setPerson(props.route.params);
   }; 
 
@@ -41,7 +42,6 @@ const st = StyleSheet.create({
     flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
-
     },
     text: {
       fontSize: 30, 

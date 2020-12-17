@@ -30,15 +30,16 @@ useEffect(() => {
         <FlatList
           // past the array of objetcts
           data={names}
-          // Extracting the item by 'id'
+          // Extracting the item by 'email'
           keyExtractor={ (item) => item.email}
           // Rendering item per item and calling the component '<Person />'
           renderItem={({ item }) => 
           <Person
-           email={item.email}
-           imageUrl={item.avatar}
-           name={item.name}
-           onClick={() => navigation.navigate('Detail', item)}
+            email={item.email}
+            imageUrl={item.avatar}
+            name={item.name}
+            // paasing the complete object like from params
+            onClick={() => navigation.navigate('Detail', item)}
           />
             }
            
