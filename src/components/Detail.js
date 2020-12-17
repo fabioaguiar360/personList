@@ -5,7 +5,6 @@ import axios from 'axios';
 export default function Detail(props) {
 
   const [person, setPerson] = useState([]);
-// Seems that is impossible get an specifc user
   function getPerson(){
     axios
     .get("http://10.0.2.2:3000/people/2")
@@ -16,7 +15,6 @@ export default function Detail(props) {
       getPerson();
   },[]);
 
-  // console.log(person);
   return (
      
       <View >

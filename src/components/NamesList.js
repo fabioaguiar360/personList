@@ -2,15 +2,15 @@ import { StatusBar } from 'expo-status-bar';
 import React, {useEffect, useState} from 'react';
 import { StyleSheet, Text, View, ScrollView, FlatList, TouchableOpacity, Image} from 'react-native';
 import Person from './Person';
-import axios from 'axios'; 
-// import api from '../services/api';
+// import axios from 'axios'; 
+import api from '../services/api';
 
 export default function NamesList( { navigation } ) {
   
 const [names, setNames] = useState([]); 
 
 function laodNames(){
-  axios
+  api
     .get("http://10.0.2.2:3000/people")
     .then((res) => {
         setNames(res.data)
