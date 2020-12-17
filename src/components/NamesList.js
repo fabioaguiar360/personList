@@ -1,8 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, View, ScrollView, FlatList, TouchableOpacity, Image} from 'react-native';
+import { StyleSheet, View, FlatList} from 'react-native';
 import Person from './Person';
-// import axios from 'axios'; 
 import api from '../services/api';
 
 export default function NamesList( { navigation } ) {

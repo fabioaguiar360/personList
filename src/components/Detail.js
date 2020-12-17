@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { StyleSheet, Text, View, Image} from 'react-native';
 
 export default function Detail(props) {
-
+// O props traz o navigate e com isso posso criar uma rota para chamar o formulário de atualização do perfil
   const [person, setPerson] = useState([]);
   function getPerson(){
     //I'm geting the object from onClick (NameList) like a params
