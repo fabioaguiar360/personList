@@ -7,9 +7,9 @@ export default function Detail(props) {
   const [person, setPerson] = useState([]);
   function getPerson(){
     //I'm geting the object from onClick (NameList) like a params
-    setPerson(props.route.params);
+    setPerson(props.route.params || []);
     // console.log(props);
-  }; 
+  };
 
   useEffect(() => {
       getPerson();
@@ -35,20 +35,24 @@ export default function Detail(props) {
           <Text style={st.info, {fontSize:20, alignSelf: 'center'}}>
             Country: {person.country}
           </Text>
-          <Button style={st.button}
-            type="outline"
-            title="Add or Update"
+          <View style={st.button}>
+          <Button 
+            title="Change data"
             onPress={() => props.navigation.navigate('Person Data', person)}
           />
+          </View>
+          
         </View>
   );
 }
 
 const st = StyleSheet.create({
     box: {
+      flex: 1,
       flexDirection: 'column',
-      justifyContent: 'center',
+      paddingTop: 50,
       alignItems: 'center',
+      backgroundColor: '#B0C4DE',
     },
     text: {
       fontSize: 30, 
@@ -81,6 +85,6 @@ const st = StyleSheet.create({
     },
     button:{
       padding: 10,
-      marginTop: 20
+      marginTop: 10
     }
   });

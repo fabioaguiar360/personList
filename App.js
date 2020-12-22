@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import NamesList from './src/components/NamesList';
 import Detail from './src/components/Detail';
 import PersonForm from './src/components/PersonForm';
+import AddPerson from './src/components/AddPerson';
 
 export default function App() {
  const Stack = createStackNavigator();
@@ -22,6 +23,10 @@ export default function App() {
         <Stack.Screen 
           name="Person Data" 
           component={PersonForm} 
+        />
+        <Stack.Screen 
+          name="Add Person" 
+          component={AddPerson} 
         />
       </Stack.Navigator>
     </NavigationContainer>

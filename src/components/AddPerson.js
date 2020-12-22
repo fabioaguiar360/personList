@@ -1,119 +1,91 @@
 import React,  { useState, useEffect } from 'react';
 import api from '../services/api';
-import { TextInput, Image, Text, View, StyleSheet, ScrollView, NumericInput} from 'react-native';
-import { Button } from 'react-native-elements';
+import { TextInput, Text, View, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 
-export default function PersonForm(props){
+export default function AddPerson(props, { navigation }){
 
     const [person, setPerson] = useState([]);
-
-    function getPersonData(){
-        setPerson(props.route.params);
-    };
-
-    async function updateData(){
-       await api.put('people/'+person.id, person).then(
-           () => props.navigation.navigate('Contact List')
+    async function postData(){
+       await api.post('people/', person).then(
+           () => navigation.navigate('Contact List')
        );
     }
 
-    useEffect(() => {
-        setPerson(person);
-    }),[];
-   useEffect(() =>{
-        getPersonData();
-    },[]);
-
     return(
         <View style={st.container}>
-            <View style={st.imageDisplay}>
-                <Image source={{uri: person.avatar}} style={st.image}/>
-                <Button
-                    title='Change it'
-                    onPress={() => {
-                        updateData();
-                    }}
-                />
-            </View>
+            <TouchableOpacity
+            style={st.addButton}
+            onPress={() => postData()}
+            >
+                <Text style={st.addButtonLable}>+</Text>
+            </TouchableOpacity>
             <ScrollView style={st.infoDisplay} showsVerticalScrollIndicator={false}>
                 <Text style={st.lable}>Name:</Text>
                 <TextInput style={st.input}
                     placeholder="Put the name!"
                     onChangeText={text => setPerson({...person, name: text})}
-                    defaultValue={person.name}
                 />
                 <Text style={st.lable}>Gender:</Text>
                 <TextInput style={st.input}
                     placeholder="Put the gender!"
                     onChangeText={text => setPerson({...person, gender: text})}
-                    defaultValue={person.gender}
+
                 />
                  <Text style={st.lable}>Phone:</Text>
                 <TextInput style={st.input}
                     placeholder="Put the phone number!"
                     onChangeText={text => setPerson({...person, phone: text})}
-                    defaultValue={person.phone}
                 />
                 <Text style={st.lable}>Email:</Text>
                 <TextInput style={st.input}
                     placeholder="Put the email!"
                     onChangeText={text => setPerson({...person, email: text})}
-                    defaultValue={person.email}
                 />
                 <Text style={st.lable}>User Name:</Text>
                 <TextInput style={st.input}
                     placeholder="Put the User Name!"
                     onChangeText={text => setPerson({...person, userName: text})}
-                    defaultValue={person.userName}
                 />
                 <Text style={st.lable}>Password:</Text>
                 <TextInput style={st.input}
                     placeholder="Put the password!"
                     onChangeText={text => setPerson({...person, password: text})}
-                    defaultValue={person.password}
                 />
                  <Text style={st.lable}>Avatar URL:</Text>
                 <TextInput style={st.input}
                     placeholder="Put the number of your house!"
                     onChangeText={text => setPerson({...person, avatar: text})}
-                    defaultValue={person.avatar}
                 />
                 <Text style={st.lable}>Email:</Text>
                 <TextInput style={st.input}
                     placeholder="Put the email!"
                     onChangeText={text => setPerson({...person, email: text})}
-                    defaultValue={person.email}
                 />
                  <Text style={st.lable}>City:</Text>
                 <TextInput style={st.input}
                     placeholder="Put the city!"
                     onChangeText={text => setPerson({...person, city: text})}
-                    defaultValue={person.city}
                 />
                 <Text style={st.lable}>Street:</Text>
                 <TextInput style={st.input}
                     placeholder="Put the street name!"
                     onChangeText={text => setPerson({...person, street: text})}
-                    defaultValue={person.street}
                 />
                 <Text style={st.lable}>Number:</Text>
                 <TextInput style={st.input}
                     placeholder="Put the number of your house!"
                     keyboardType = 'numeric'
                     onChangeText={text => setPerson({...person, number: text})}
-                    defaultValue={String(person.number)}
                 />
                 <Text style={st.lable}>State:</Text>
                 <TextInput style={st.input}
                     placeholder="Put the number of your house!"
                     onChangeText={text => setPerson({...person, state: text})}
-                    defaultValue={person.state}
                 />
                 <Text style={st.lable}>Country:</Text>
                 <TextInput style={st.input}
                     placeholder="Put the number of your house!"
                     onChangeText={text => setPerson({...person, country: text})}
-                    defaultValue={person.country}
                 />
             </ScrollView>
             
@@ -125,13 +97,11 @@ const st = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#B0C4DE',
-        flexDirection: 'row',
-
+        justifyContent: 'center'
       },
       imageDisplay: {
         backgroundColor: '#4682B4',
         alignItems: 'center'
-
       },
       image: {
         width: 100,
@@ -161,5 +131,31 @@ const st = StyleSheet.create({
           marginTop: 5,
           marginBottom: 5
           
+      },
+      addButton: {
+        width: 80,
+        height: 80,
+        borderRadius: 80,
+        backgroundColor: '#FFA500',
+        shadowColor: '#000',
+        position: 'absolute',
+        bottom: 30,
+        alignSelf: 'flex-start',
+        justifyContent: 'center',
+        alignSelf: 'center',
+        elevation: 5,
+        zIndex: 9,
+        shadowColor: '#000',
+        shadowOpacity: 0.2,
+        shadowOffset: {
+          height: 7,
+          width: 3 
+        }
+      },
+      addButtonLable: {
+        color: '#FFF',
+        fontSize: 50,
+        alignSelf: 'center',
+        justifyContent: 'center'
       }
 });
