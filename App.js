@@ -32,14 +32,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
-// const st = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center'
-//   },
-//   scroller:  {
-//     width: '100%'
-//   }
-// });

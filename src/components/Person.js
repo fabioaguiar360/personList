@@ -12,9 +12,7 @@ import { StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
           <Text style={st.name}>{props.name}</Text>
           <Text style={st.email}>{props.email}</Text>
         </View>
-        
       </TouchableOpacity>
-  
   );
 }
 
