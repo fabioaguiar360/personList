@@ -36,7 +36,7 @@ useEffect(() => {
           // past the array of objetcts
           data={names}
           // Extracting the item by 'id'
-          keyExtractor={ (item) => item.id}
+          keyExtractor={ (item) => String(item.id)}
           // Rendering item per item and calling the component '<Person />'
           renderItem={({ item }) => 
               <Person
