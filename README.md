@@ -3,10 +3,8 @@ List of persons from randomuser.me api
 
 That is a simple app consuming an api from randomuser.me to learn get info from an api using AXIOS.
 
-At this app I'm using Axios to "fetch" and Stak navigator to change between screens.
-
 _________________________
-Atualizations:
+Actualizations:
 
 I changed randomuser.me for json server.
 To use it I installed this service in my computer and for start I have to call the above command on the folder of this service:
