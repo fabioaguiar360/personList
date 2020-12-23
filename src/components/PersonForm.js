@@ -17,9 +17,6 @@ export default function PersonForm(props){
        );
     }
 
-    useEffect(() => {
-        setPerson(person);
-    }),[];
    useEffect(() =>{
         getPersonData();
     },[]);
