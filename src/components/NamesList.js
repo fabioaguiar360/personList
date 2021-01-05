@@ -1,12 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, View, FlatList, Text, TouchableOpacity, SafeAreaView} from 'react-native';
+import { StyleSheet, View, FlatList, Text, TouchableOpacity, SafeAreaView, Animated} from 'react-native';
+import { SearchBar } from 'react-native-elements';
 import Person from './Person';
 import api from '../services/api';
 
 export default function NamesList( { navigation } ) {
   
 const [names, setNames] = useState([]); 
+const [search, setSearch] = useState();
 
 function laodNames(){
   api
@@ -15,7 +17,9 @@ function laodNames(){
         setNames(res.data);
     });
 };
-
+const updateSearch = (text) =>{
+  setSearch(text);
+};
 useEffect(() => {
   laodNames();
 });
@@ -25,6 +29,7 @@ useEffect(() => {
     
     <SafeAreaView style={st.container}>
       <StatusBar style={"dark"} />
+      
 
       <TouchableOpacity
        style={st.addButton}
@@ -33,7 +38,13 @@ useEffect(() => {
         <Text style={st.addButtonLable}>+</Text>
       </TouchableOpacity>
       <StatusBar style="auto" />
-      <View showsVerticalScrollIndicator={false} style={st.scroller}>
+      <Animated.View showsVerticalScrollIndicator={false} style={st.scroller}>
+      <SearchBar 
+        placeholder="Type Here..."
+        onChangeText={(text) => updateSearch(text)}
+        value={search}
+        lightTheme
+      />
         <FlatList
           // past the array of objetcts
           data={names}
@@ -50,7 +61,7 @@ useEffect(() => {
               />
             }  
         />
-      </View>
+      </Animated.View>
     </SafeAreaView >
   );
 }

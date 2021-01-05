@@ -1,6 +1,6 @@
 import React,  { useState, useEffect } from 'react';
 import api from '../services/api';
-import { TextInput, Image, Text, View, StyleSheet, ScrollView, NumericInput} from 'react-native';
+import { TextInput, Image, Text, View, StyleSheet, ScrollView, NumericInput, KeyboardAvoidingView} from 'react-native';
 import { Button } from 'react-native-elements';
 
 export default function PersonForm(props){
@@ -22,7 +22,7 @@ export default function PersonForm(props){
     },[]);
 
     return(
-        <View style={st.container}>
+        <KeyboardAvoidingView style={st.container}>
             <View style={st.imageDisplay}>
                 <Image source={{uri: person.avatar}} style={st.image}/>
                 <Button
@@ -114,7 +114,7 @@ export default function PersonForm(props){
                 />
             </ScrollView>
             
-        </View>
+        </KeyboardAvoidingView>
     )
 }
 
