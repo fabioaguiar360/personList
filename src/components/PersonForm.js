@@ -127,7 +127,8 @@ const st = StyleSheet.create({
       },
       imageDisplay: {
         backgroundColor: '#4682B4',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginTop: 60
 
       },
       image: {
@@ -142,7 +143,7 @@ const st = StyleSheet.create({
       },
       infoDisplay: {
           padding: 10,
-          marginTop: 10
+          marginTop: 40
       },
       lable: {
           fontSize: 20

@@ -2,6 +2,7 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import NamesList from './src/components/NamesList';
 import Detail from './src/components/Detail';
 import PersonForm from './src/components/PersonForm';
@@ -9,26 +10,29 @@ import AddPerson from './src/components/AddPerson';
 
 export default function App() {
  const Stack = createStackNavigator();
+ const Drawer = createDrawerNavigator();
+
   return (
+    
     <NavigationContainer>
-      <Stack.Navigator initialRouteName={'Contact List'}>
-        <Stack.Screen 
+      <Drawer.Navigator initialRouteName={'Contact List'}>
+        <Drawer.Screen 
           name="Contact List" 
           component={NamesList} 
         />
-        <Stack.Screen
+        <Drawer.Screen
          name="Detail" 
          component={Detail} 
         />
-        <Stack.Screen 
+        <Drawer.Screen 
           name="Person Data" 
           component={PersonForm} 
         />
-        <Stack.Screen 
+        <Drawer.Screen 
           name="Add Person" 
           component={AddPerson} 
         />
-      </Stack.Navigator>
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }

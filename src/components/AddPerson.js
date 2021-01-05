@@ -115,7 +115,7 @@ const st = StyleSheet.create({
       },
       infoDisplay: {
           padding: 10,
-          marginTop: 10
+          marginTop: 40
       },
       lable: {
           fontSize: 20

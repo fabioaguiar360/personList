@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, View, FlatList, Text, TouchableOpacity} from 'react-native';
+import { StyleSheet, View, FlatList, Text, TouchableOpacity, SafeAreaView} from 'react-native';
 import Person from './Person';
 import api from '../services/api';
 
@@ -23,7 +23,9 @@ useEffect(() => {
 
   return (
     
-    <View style={st.container}>
+    <SafeAreaView style={st.container}>
+      <StatusBar style={"dark"} />
+
       <TouchableOpacity
        style={st.addButton}
        onPress={() => {navigation.navigate('Add Person')}}
@@ -49,7 +51,7 @@ useEffect(() => {
             }  
         />
       </View>
-    </View >
+    </SafeAreaView >
   );
 }
 
@@ -60,7 +62,8 @@ const st = StyleSheet.create({
     alignItems: 'center'
   },
   scroller:  {
-    width: '100%'
+    width: '100%',
+    marginTop: 40
   },
   box: {
     borderRadius: 5,
