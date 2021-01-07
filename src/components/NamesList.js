@@ -1,32 +1,48 @@
 import { StatusBar } from 'expo-status-bar';
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useMemo, useEffect, useState} from 'react';
 import { StyleSheet, View, FlatList, Text, TouchableOpacity, SafeAreaView, Animated} from 'react-native';
 import { SearchBar } from 'react-native-elements';
 import Person from './Person';
 import api from '../services/api';
+import { includes, propertyOf } from 'lodash';
 
 export default function NamesList( { navigation } ) {
   
-const [names, setNames] = useState([]); 
-const [search, setSearch] = useState();
+const [names, setNames] = useState([]);
+const [filtredNames, setFiltredNames] = useState([]); 
+const [search, setSearch] = useState('');
 
-function laodNames(){
+const laodNames = useCallback(() => {
   api
     .get("people")
     .then((res) => {
         setNames(res.data);
     });
-};
-const updateSearch = (text) =>{
-  setSearch(text);
-};
-useEffect(() => {
-  laodNames();
 });
 
+useEffect(() => {
+  laodNames;
+  setFiltredNames(names);
+},[]);
+
+function updateSearch(data){
+  setSearch(data);
+};
+
+useMemo(() => {
+  if(search.length > 0){
+    
+    let filtred = names.filter(data => data.name.includes(search));
+    filtred != '' ? setFiltredNames(filtred) : filtred = names.filter(data => data.email.includes(search));
+    setFiltredNames(filtred);
+
+  }else{
+    laodNames();
+     setFiltredNames(names);
+  }
+},[search]);
 
   return (
-    
     <SafeAreaView style={st.container}>
       <StatusBar style={"dark"} />
       
@@ -40,14 +56,16 @@ useEffect(() => {
       <StatusBar style="auto" />
       <Animated.View showsVerticalScrollIndicator={false} style={st.scroller}>
       <SearchBar 
-        placeholder="Type Here..."
+        placeholder="Type the name..."
         onChangeText={(text) => updateSearch(text)}
         value={search}
         lightTheme
+        round        
+        autoCorrect={false}
       />
         <FlatList
           // past the array of objetcts
-          data={names}
+          data={filtredNames}
           // Extracting the item by 'id'
           keyExtractor={ (item) => String(item.id)}
           // Rendering item per item and calling the component '<Person />'
