@@ -1,6 +1,6 @@
 import React,  { useState, useEffect } from 'react';
 import api from '../services/api';
-import { TextInput, Text, View, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { TextInput, Text, View, StyleSheet, ScrollView, TouchableOpacity, ImageBackground } from 'react-native';
 
 export default function AddPerson(props, { navigation }){
 
@@ -13,82 +13,83 @@ export default function AddPerson(props, { navigation }){
 
     return(
         <View style={st.container}>
-            <TouchableOpacity
-            style={st.addButton}
-            onPress={() => postData()}
-            >
-                <Text style={st.addButtonLable}>+</Text>
-            </TouchableOpacity>
-            <ScrollView style={st.infoDisplay} showsVerticalScrollIndicator={false}>
-                <Text style={st.lable}>Name:</Text>
-                <TextInput style={st.input}
-                    placeholder="Put the name!"
-                    onChangeText={text => setPerson({...person, name: text})}
-                />
-                <Text style={st.lable}>Gender:</Text>
-                <TextInput style={st.input}
-                    placeholder="Put the gender!"
-                    onChangeText={text => setPerson({...person, gender: text})}
+            <ImageBackground source={require('../img/background.jpg')}  style={st.background}>
+                <TouchableOpacity
+                style={st.addButton}
+                onPress={() => postData()}
+                >
+                    <Text style={st.addButtonLable}>+</Text>
+                </TouchableOpacity>
+                <ScrollView style={st.infoDisplay} showsVerticalScrollIndicator={false}>
+                    <Text style={st.lable}>Name:</Text>
+                    <TextInput style={st.input}
+                        placeholder="Put the name!"
+                        onChangeText={text => setPerson({...person, name: text})}
+                    />
+                    <Text style={st.lable}>Gender:</Text>
+                    <TextInput style={st.input}
+                        placeholder="Put the gender!"
+                        onChangeText={text => setPerson({...person, gender: text})}
 
-                />
-                 <Text style={st.lable}>Phone:</Text>
-                <TextInput style={st.input}
-                    placeholder="Put the phone number!"
-                    onChangeText={text => setPerson({...person, phone: text})}
-                />
-                <Text style={st.lable}>Email:</Text>
-                <TextInput style={st.input}
-                    placeholder="Put the email!"
-                    onChangeText={text => setPerson({...person, email: text})}
-                />
-                <Text style={st.lable}>User Name:</Text>
-                <TextInput style={st.input}
-                    placeholder="Put the User Name!"
-                    onChangeText={text => setPerson({...person, userName: text})}
-                />
-                <Text style={st.lable}>Password:</Text>
-                <TextInput style={st.input}
-                    placeholder="Put the password!"
-                    onChangeText={text => setPerson({...person, password: text})}
-                />
-                 <Text style={st.lable}>Avatar URL:</Text>
-                <TextInput style={st.input}
-                    placeholder="Put the number of your house!"
-                    onChangeText={text => setPerson({...person, avatar: text})}
-                />
-                <Text style={st.lable}>Email:</Text>
-                <TextInput style={st.input}
-                    placeholder="Put the email!"
-                    onChangeText={text => setPerson({...person, email: text})}
-                />
-                 <Text style={st.lable}>City:</Text>
-                <TextInput style={st.input}
-                    placeholder="Put the city!"
-                    onChangeText={text => setPerson({...person, city: text})}
-                />
-                <Text style={st.lable}>Street:</Text>
-                <TextInput style={st.input}
-                    placeholder="Put the street name!"
-                    onChangeText={text => setPerson({...person, street: text})}
-                />
-                <Text style={st.lable}>Number:</Text>
-                <TextInput style={st.input}
-                    placeholder="Put the number of your house!"
-                    keyboardType = 'numeric'
-                    onChangeText={text => setPerson({...person, number: text})}
-                />
-                <Text style={st.lable}>State:</Text>
-                <TextInput style={st.input}
-                    placeholder="Put the number of your house!"
-                    onChangeText={text => setPerson({...person, state: text})}
-                />
-                <Text style={st.lable}>Country:</Text>
-                <TextInput style={st.input}
-                    placeholder="Put the number of your house!"
-                    onChangeText={text => setPerson({...person, country: text})}
-                />
-            </ScrollView>
-            
+                    />
+                    <Text style={st.lable}>Phone:</Text>
+                    <TextInput style={st.input}
+                        placeholder="Put the phone number!"
+                        onChangeText={text => setPerson({...person, phone: text})}
+                    />
+                    <Text style={st.lable}>Email:</Text>
+                    <TextInput style={st.input}
+                        placeholder="Put the email!"
+                        onChangeText={text => setPerson({...person, email: text})}
+                    />
+                    <Text style={st.lable}>User Name:</Text>
+                    <TextInput style={st.input}
+                        placeholder="Put the User Name!"
+                        onChangeText={text => setPerson({...person, userName: text})}
+                    />
+                    <Text style={st.lable}>Password:</Text>
+                    <TextInput style={st.input}
+                        placeholder="Put the password!"
+                        onChangeText={text => setPerson({...person, password: text})}
+                    />
+                    <Text style={st.lable}>Avatar URL:</Text>
+                    <TextInput style={st.input}
+                        placeholder="Put the number of your house!"
+                        onChangeText={text => setPerson({...person, avatar: text})}
+                    />
+                    <Text style={st.lable}>Email:</Text>
+                    <TextInput style={st.input}
+                        placeholder="Put the email!"
+                        onChangeText={text => setPerson({...person, email: text})}
+                    />
+                    <Text style={st.lable}>City:</Text>
+                    <TextInput style={st.input}
+                        placeholder="Put the city!"
+                        onChangeText={text => setPerson({...person, city: text})}
+                    />
+                    <Text style={st.lable}>Street:</Text>
+                    <TextInput style={st.input}
+                        placeholder="Put the street name!"
+                        onChangeText={text => setPerson({...person, street: text})}
+                    />
+                    <Text style={st.lable}>Number:</Text>
+                    <TextInput style={st.input}
+                        placeholder="Put the number of your house!"
+                        keyboardType = 'numeric'
+                        onChangeText={text => setPerson({...person, number: text})}
+                    />
+                    <Text style={st.lable}>State:</Text>
+                    <TextInput style={st.input}
+                        placeholder="Put the number of your house!"
+                        onChangeText={text => setPerson({...person, state: text})}
+                    />
+                    <Text style={st.lable}>Country:</Text>
+                    <TextInput style={st.input}
+                        placeholder="Put the number of your house!"
+                        onChangeText={text => setPerson({...person, country: text})}
+                    />
+                </ScrollView>
+                </ImageBackground>
         </View>
     )
 }
@@ -103,6 +104,12 @@ const st = StyleSheet.create({
         backgroundColor: '#4682B4',
         alignItems: 'center'
       },
+      background: {
+        flex: 1,
+        resizeMode: "cover",
+        // justifyContent: "center",
+        width: '100%'
+      },
       image: {
         width: 100,
         height: 100,
@@ -115,7 +122,8 @@ const st = StyleSheet.create({
       },
       infoDisplay: {
           padding: 10,
-          marginTop: 40
+          marginTop: 40,
+          marginBottom: 20
       },
       lable: {
           fontSize: 20

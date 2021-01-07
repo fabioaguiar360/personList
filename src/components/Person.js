@@ -3,16 +3,17 @@ import { StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 
  function Person(props) {
   return (
-
-      <TouchableOpacity style={st.box} onPress={props.onClick}>
-        <Image style={st.image} 
-        source={{uri: props.imageUrl}}
-        />
-        <View style={st.data}>
-          <Text style={st.name}>{props.name}</Text>
-          <Text style={st.email}>{props.email}</Text>
-        </View>
-      </TouchableOpacity>
+      <View>
+          <TouchableOpacity style={st.box} onPress={props.onClick}>
+            <Image style={st.image} 
+            source={{uri: props.imageUrl}}
+            />
+            <View style={st.data}>
+              <Text style={st.name}>{props.name}</Text>
+              <Text style={st.email}>{props.email}</Text>
+            </View>
+          </TouchableOpacity>
+      </View>
   );
 }
 
@@ -27,6 +28,12 @@ const st = StyleSheet.create({
       height: 75,
       padding: 5,
       marginTop: 10
+    },
+    background: {
+      flex: 1,
+      resizeMode: "cover",
+      // justifyContent: "center",
+      width: '100%'
     },
     image: {
       width: 60,

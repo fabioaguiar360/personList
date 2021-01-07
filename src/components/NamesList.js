@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useCallback, useMemo, useEffect, useState} from 'react';
-import { StyleSheet, View, FlatList, Text, TouchableOpacity, SafeAreaView, Animated, Image} from 'react-native';
+import { StyleSheet, View, FlatList, Text, TouchableOpacity, SafeAreaView, Animated, Image, ImageBackground} from 'react-native';
 import { SearchBar } from 'react-native-elements';
 import Person from './Person';
 import api from '../services/api';
@@ -21,8 +21,8 @@ const laodNames = useCallback(() => {
 });
 
 useEffect(() => {
-  // laodNames;
-  // setFiltredNames(names);
+  laodNames;
+  setFiltredNames(names);
 },[]);
 
 function updateSearch(data){
@@ -37,65 +37,69 @@ useMemo(() => {
     setFiltredNames(filtred);
 
   }else{
-    //laodNames();
+    laodNames();
     setFiltredNames(names);
   }
 },[search]);
 
   return (
-    <SafeAreaView style={st.container}>
-      <StatusBar style={"dark"} />
-      
-
-      <TouchableOpacity
-       style={st.addButton}
-       onPress={() => {navigation.navigate('Add Person')}}
-       >
-        <Text style={st.addButtonLable}>+</Text>
-      </TouchableOpacity>
-      <StatusBar style="auto" />
-      
-      <Animated.View showsVerticalScrollIndicator={false} style={st.scroller}>
-      <SearchBar 
-        placeholder="Type the name or email..."
-        onChangeText={(text) => updateSearch(text)}
-        value={search}
-        lightTheme
-        round        
-        autoCorrect={false}
-      />
-      {
-        filtredNames.length == 0 ? 
-        <View style={st.info}>
-          <Image source={require('../img/info-ico2.png')} style={st.infoImage} />
-          <Text style={st.infoText}>
-            You can search by name or email
-          </Text>
-          <Text style={st.infoText}>
-            Try it!
-          </Text>
-        </View>
-        : <FlatList
-        // past the array of objetcts
-        data={filtredNames}
-        // Extracting the item by 'id'
-        keyExtractor={ (item) => String(item.id)}
-        // Rendering item per item and calling the component '<Person />'
-        renderItem={({ item }) => 
-            <Person
-              email={item.email}
-              imageUrl={item.avatar}
-              name={item.name}
-              // paasing the complete object like from params
-              onClick={() => navigation.navigate('Detail', item)}
-            />
-          }  
-      />
-      
-      }
+    
+    <View style={st.container}>
+      <ImageBackground source={require('../img/background.jpg')}  style={st.background}>
+        <StatusBar style={"dark"} />
         
-      </Animated.View>
-    </SafeAreaView >
+
+        <TouchableOpacity
+        style={st.addButton}
+        onPress={() => {navigation.navigate('Add Person')}}
+        >
+          <Text style={st.addButtonLable}>+</Text>
+        </TouchableOpacity>
+        <StatusBar style="auto" />
+        
+        <Animated.View showsVerticalScrollIndicator={false} style={st.scroller}>
+        <SearchBar 
+          placeholder="Type the name or email..."
+          onChangeText={(text) => updateSearch(text)}
+          value={search}
+          lightTheme
+          round        
+          autoCorrect={false}
+        />
+        {
+          filtredNames.length == 0 ? 
+          <View style={st.info}>
+            <Image source={require('../img/info-ico2.png')} style={st.infoImage} />
+            <Text style={st.infoText}>
+              You can search by name or email
+            </Text>
+            <Text style={st.infoText}>
+              Try it!
+            </Text>
+          </View>
+          : <FlatList
+          // past the array of objetcts
+          data={filtredNames}
+          // Extracting the item by 'id'
+          keyExtractor={ (item) => String(item.id)}
+          // Rendering item per item and calling the component '<Person />'
+          renderItem={({ item }) => 
+              <Person
+                email={item.email}
+                imageUrl={item.avatar}
+                name={item.name}
+                // paasing the complete object like from params
+                onClick={() => navigation.navigate('Detail', item)}
+              />
+            }  
+        />
+        
+        }
+          
+        </Animated.View>
+        </ImageBackground>
+    </View >
+    
   );
 }
 
@@ -105,6 +109,12 @@ const st = StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: '#B0C4DE',
     alignItems: 'center'
+  },
+  background: {
+    flex: 1,
+    resizeMode: "cover",
+    // justifyContent: "center",
+    width: '100%'
   },
   scroller:  {
     width: '100%',
@@ -157,6 +167,7 @@ const st = StyleSheet.create({
   },
   infoText: {
     fontSize: 20,
-    alignSelf: 'center'
+    alignSelf: 'center',
+    color: '#000'
   }
 });
