@@ -40,3 +40,7 @@ The search function must be like a modal and return a filtred list of persons (f
 
 I'll build it with functional componets (useCalback, useEffect, useSate...) 
 
+_____________________________________
+Final informations/actuaizations:
+
+I Put the json server folder called (demo-server) into the project folder, in this way every body can rum it wwhen download the project from this repo.
